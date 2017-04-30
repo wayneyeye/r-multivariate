@@ -1,0 +1,11 @@
+library(MASS)
+data5.3<-read.table("clipboard",header=T)
+attach(data5.3)
+ld=lda(G~x1+x2,prior=c(6,8)/14)
+ld
+Z=predict(ld)
+newG=Z$class
+cbind(G,newG,Z$x)
+tab=table(G,newG)
+tab
+Z$post
